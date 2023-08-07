@@ -1,0 +1,9 @@
+.profile-photo {
+    height: 245px;
+    width: 167.5px;
+    cursor: pointer;
+}
+
+.hidden-input {
+  display: none;
+}
