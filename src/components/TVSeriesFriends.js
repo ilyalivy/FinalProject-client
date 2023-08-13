@@ -23,14 +23,19 @@ const TVSeriesFriends = () => {
   }, [user]);
 
   return (
-    <div>
-      <h2>TV Series Friends</h2>
+    <div className='tvfriends'>
+    
       {friends.map(friend => (
-        <div key={friend.id}>
-          <Link to={`/profile/${friend.id}`}>
+        <div key={friend.id} >
+
+          <Link to={`/profile/${friend.id}`} className='eachtvfriend link'>
             {friend.photo && <img src={friend.photo} alt="Friend Photo" className='tvfriends-photo'/>}
-            <p>{friend.email ? `${friend.email}` : "No username set"}</p>
-            <p>{friend.matching_series} matches</p>
+
+            <div className='username_matches'>
+              <p className='username'>{friend.username ? `${friend.username}` : "No username set"}</p>
+              <p className='matches'>{friend.matching_series} matches</p>
+            </div>
+            
           </Link>
 
           

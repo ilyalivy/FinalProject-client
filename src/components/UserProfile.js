@@ -35,17 +35,25 @@ const UserProfile = () => {
 
     return (
         <div>
-            <h2>User Profile</h2>
-            <img src={profileUser.photo} alt="User Photo" className="tvfriend-photo"/>
-            <p>{profileUser.email}</p>
-            <p>Telegram: {profileUser.username}</p>
-            <h2>User Series</h2>
-            {userSeries.map(series => (
-                <div key={series.id}>
-                    <img src={series.image} alt={series.title} />
-                    <h4>{series.title}</h4>
+
+            <div className="userinfo">
+                <img src={profileUser.photo} alt="User Photo" className="user-photo"/>
+                <p className="usertelegram">Telegram: {profileUser.username}</p>
+            </div>
+            
+            <div className="usertvseries">
+                <h2 className="titleuser">User tv series</h2>
+                <div className="userusertvseries">
+                    {userSeries.map(series => (
+                        <div key={series.id} className="usereachtvseries">
+                            <img src={series.image} alt={series.title} />
+                            {/* <h4>{series.title}</h4> */}
+                        </div>
+                    ))}
                 </div>
-            ))}
+                
+            </div>
+            
         </div>
     );
 };

@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../images/back.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.innermain {
+    background-color: white;
+    height: 370px;
+    width: 600px;
+    font-family: 'Text Me One', sans-serif;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.name {
+    height: 100px;
+    width: 100%;
+    font-family: 'Exo', sans-serif;
+    font-weight: 100;
+    font-size: 55px;
+    background-color: rgb(254, 249, 112);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mates {
+    margin: 20px 0;
+}
+
+.community {
+    font-size: 20px;
+}
+
+.error {
+    margin-top: 20px;
+}
+
+form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.datainput {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.email {
+    font-family: 'Text Me One', sans-serif;
+    font-size: 18px;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+.password {
+    font-family: 'Text Me One', sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.sign {
+    display: flex;
+    justify-content: space-evenly;
+}

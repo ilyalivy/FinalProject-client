@@ -3,12 +3,13 @@ import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext.js';
 
 const Logout = () => {
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser, setIsAuthenticated } = useContext(UserContext);
 
     useEffect(() => {
         if (user) {
             setUser(null);
-            localStorage.removeItem('user');
+            setIsAuthenticated(false);
+            localStorage.clear();
         }
     }, [user, setUser]);
 

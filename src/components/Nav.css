@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.navbar {
+    z-index: 1000;
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    font-family: 'Exo', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    background-color: rgb(254, 249, 112);
+    padding: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin-left: 50px;
+}
+
+.links {
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.linkactive {
+    font-family: 'Exo', sans-serif;
+    font-weight: 400;
+}

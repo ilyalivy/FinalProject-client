@@ -13,22 +13,35 @@ import Logout from './components/Logout.js';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
 
   // console.log('User => ', user)
 
   // console.log('LocalStorage=>', localStorage)
 
   useEffect(() => {
-    if(localStorage.getItem('user')){
-      setUser(JSON.parse(localStorage.getItem('user')));
+    const storedUser = localStorage.getItem('user');
+    if(storedUser){
+      setUser(JSON.parse(storedUser));
+      setIsAuthenticated(true);
     }
+    setLoading(false);
   },[]);
+
+  
 
 
   return (
-    <UserContext.Provider value = {{user, setUser}}>
+    
+    <UserContext.Provider value = {{user, setUser, setIsAuthenticated}}>
+      
       <Nav/>
-      <Routes>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <Routes>
         <Route path="/" element={user ? <Navigate replace to="/profile" /> : <AuthPage />} />
         {/* <Route path="/login" element={user ? <Navigate replace to="/profile" /> : <Login />} />
         <Route path="/register" element={user ? <Navigate replace to="/profile" /> : <Register />} /> */}
@@ -37,7 +50,12 @@ function App() {
         <Route path="/profile/:userId" element={user ? <UserProfile /> : <Navigate replace to="/" />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
-    </UserContext.Provider>  
+      )}
+     
+      
+      
+    </UserContext.Provider> 
+    
   );
 }
 
