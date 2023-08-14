@@ -13,6 +13,8 @@ const Profile = () => {
     const [photo, setPhoto] = useState(null);
     const [selectedSeries, setSelectedSeries] = useState([]);
 
+    const BASE_URL = process.env.REACT_APP_BASE_URL
+
     const listtvseriesRef = useRef();
 
     const SeriesPoster = ({ series, onAdd, onDelete, isUserSeries }) => {
@@ -59,7 +61,7 @@ const Profile = () => {
 
     const getSeriesList = async () => {
         try {
-            const res = await axios.get('http://localhost:3030/tv_series');
+            const res = await axios.get(`${BASE_URL}/tv_series`);
             setSeriesList(res.data);
         } catch (error) {
             console.log(error);
@@ -69,7 +71,7 @@ const Profile = () => {
     const getUserSeries = async () => {
         try {
             const res = await axios.get(
-                `http://localhost:3030/profile/${user.id}/tv_series`
+                `${BASE_URL}/profile/${user.id}/tv_series`
             );
             setUserSeries(res.data);
         } catch (error) {
@@ -81,7 +83,7 @@ const Profile = () => {
         console.log('ADD SERIES ID', seriesId);
         try {
             await axios.post(
-                `http://localhost:3030/profile/${user.id}/tv_series`,
+                `${BASE_URL}/profile/${user.id}/tv_series`,
                 { seriesId }
             );
             setSelectedSeries((prevSelected) => [...prevSelected, seriesId]);
@@ -95,7 +97,7 @@ const Profile = () => {
         console.log('DELETE SERIES ID', seriesId);
         try {
             await axios.delete(
-                `http://localhost:3030/profile/${user.id}/tv_series/${seriesId}`
+                `${BASE_URL}/profile/${user.id}/tv_series/${seriesId}`
             );
             setSelectedSeries((prevSelected) =>
                 prevSelected.filter((id) => id !== seriesId)
@@ -122,7 +124,7 @@ const Profile = () => {
     const updateTelegramUsername = async () => {
         try {
             await axios.put(
-                `http://localhost:3030/profile/${user.id}/updateUsername`,
+                `${BASE_URL}/profile/${user.id}/updateUsername`,
                 { username: telegramUsername }
             );
             setUser({ ...user, username: telegramUsername });
@@ -150,7 +152,7 @@ const Profile = () => {
             // Теперь автоматически отправляем запрос на сервер для загрузки
             axios
                 .post(
-                    `http://localhost:3030/profile/${user.id}/uploadPhoto`,
+                    `${BASE_URL}/profile/${user.id}/uploadPhoto`,
                     formData,
                     {
                         headers: {

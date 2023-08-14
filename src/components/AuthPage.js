@@ -10,6 +10,8 @@ const AuthPage = () => {
     const [error, setError] = useState('');
     const { user, setUser } = useContext(UserContext);
 
+    const BASE_URL = process.env.REACT_APP_BASE_URL
+
     const isValidEmail = (email) => {
         // Регулярное выражение для проверки email
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -28,7 +30,7 @@ const AuthPage = () => {
             return;
         }
 
-        const url = isLogin ? 'http://localhost:3030/login' : 'http://localhost:3030/register';
+        const url = isLogin ? `${BASE_URL}/login` : `${BASE_URL}/register`;
         const userData = { email, password };
 
         try {

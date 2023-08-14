@@ -8,10 +8,12 @@ const UserProfile = () => {
     const [profileUser, setProfileUser] = useState(null);
     const [userSeries, setUserSeries] = useState([]);
 
+    const BASE_URL = process.env.REACT_APP_BASE_URL
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3030/user/${userId}`);
+                const res = await axios.get(`${BASE_URL}/user/${userId}`);
                 setProfileUser(res.data[0]);
             } catch (error) {
                 console.log(error);
@@ -20,7 +22,7 @@ const UserProfile = () => {
 
         const fetchUserSeries = async () => {
             try {
-                const res = await axios.get(`http://localhost:3030/profile/${userId}/tv_series`);
+                const res = await axios.get(`${BASE_URL}/profile/${userId}/tv_series`);
                 setUserSeries(res.data);
             } catch (error) {
                 console.log(error);

@@ -8,10 +8,12 @@ const TVSeriesFriends = () => {
   const { user } = useContext(UserContext);
   const [friends, setFriends] = useState([]);
 
+  const BASE_URL = process.env.REACT_APP_BASE_URL
+
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const response = await axios.get(`http://localhost:3030/tvseriesfriends/${user.id}`);
+        const response = await axios.get(`${BASE_URL}/tvseriesfriends/${user.id}`);
         // console.log(response.data);
         setFriends(response.data.rows);
       } catch (error) {
