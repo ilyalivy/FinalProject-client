@@ -161,12 +161,13 @@ const Profile = () => {
                     }
                 )
                 .then((response) => {
-                    // Обновляем URL фотографии пользователя в состоянии приложения
-                    setUser((prevUser) => ({
-                        ...prevUser,
+                    const updatedUser = {
+                        ...user,
                         photo: response.data.photo,
-                    }));
-                })
+                    };
+                    setUser(updatedUser);
+                    localStorage.setItem('user', JSON.stringify(updatedUser));
+                })      
                 .catch((error) => {
                     console.error('Error uploading photo:', error);
                 });
