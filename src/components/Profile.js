@@ -247,7 +247,7 @@ const Profile = () => {
 
                 {userSeries.length < 5 && (
                     <>
-                        <h2 className="titlelist">All Series</h2>
+                        <h2 className="titlelist">Click on your 5 favorite tv series from list below</h2>
                         <div className="listtvseries" ref={listtvseriesRef}>
                             {seriesList.map((series) => (
                             <div
