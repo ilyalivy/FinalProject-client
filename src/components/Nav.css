@@ -1,8 +1,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
-    
+    padding: 0; 
 }
 
 .navbar {
@@ -21,7 +20,7 @@
 }
 
 .logo {
-    margin-left: 50px;
+    margin-left: 20px;
 }
 
 .links {

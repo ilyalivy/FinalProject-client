@@ -14,6 +14,6 @@ const Logout = () => {
     }, [user, setUser]);
 
     return <Navigate to="/" replace />;
-}
+};
 
 export default Logout;

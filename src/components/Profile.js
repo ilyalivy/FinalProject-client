@@ -3,8 +3,9 @@ import axios from 'axios';
 import UserContext from '../UserContext.js';
 import { Link } from 'react-router-dom';
 import './Profile.css';
-// import SeriesPoster from './SeriesPoster.js';
-// ?????????
+import loadingimage from '../images/loading.gif';
+
+
 const Profile = () => {
     const { user, setUser } = useContext(UserContext);
     const [seriesList, setSeriesList] = useState([]);
@@ -12,10 +13,18 @@ const Profile = () => {
     const [telegramUsername, setTelegramUsername] = useState('');
     const [photo, setPhoto] = useState(null);
     const [selectedSeries, setSelectedSeries] = useState([]);
+    // const [clientX,setClientX] = useState()
+    // const [clientY,setClientY] = useState()
+    const [loading, setLoading] = useState(false);
+    const [loading1, setLoading1] = useState(false);
+    const [loading2, setLoading2] = useState(false);
 
     const BASE_URL = process.env.REACT_APP_BASE_URL
-
+    
     const listtvseriesRef = useRef();
+
+    // console.log('profile user=>',user);
+
 
     const SeriesPoster = ({ series, onAdd, onDelete, isUserSeries }) => {
         const [animate, setAnimate] = useState(false);
@@ -60,15 +69,19 @@ const Profile = () => {
     const inputRef = useRef(null);
 
     const getSeriesList = async () => {
+        setLoading2(true);
         try {
             const res = await axios.get(`${BASE_URL}/tv_series`);
             setSeriesList(res.data);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading2(false);
         }
     };
 
     const getUserSeries = async () => {
+        setLoading1(true);
         try {
             const res = await axios.get(
                 `${BASE_URL}/profile/${user.id}/tv_series`
@@ -76,6 +89,8 @@ const Profile = () => {
             setUserSeries(res.data);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading1(false);
         }
     };
 
@@ -144,6 +159,7 @@ const Profile = () => {
     const handlePhotoChange = (e) => {
         const selectedPhoto = e.target.files[0];
         setPhoto(selectedPhoto);
+        setLoading(true);
 
         if (selectedPhoto) {
             const formData = new FormData();
@@ -161,18 +177,22 @@ const Profile = () => {
                     }
                 )
                 .then((response) => {
+                    console.log('upload', response.data);
                     const updatedUser = {
                         ...user,
-                        photo: response.data.photo,
+                        location: response.data.location,
                     };
                     setUser(updatedUser);
                     localStorage.setItem('user', JSON.stringify(updatedUser));
+                    setLoading(false);
                 })      
                 .catch((error) => {
                     console.error('Error uploading photo:', error);
+                    setLoading(false);
                 });
         }
     };
+
 
     useEffect(() => {
         getSeriesList();
@@ -186,10 +206,11 @@ const Profile = () => {
         setSelectedSeries(seriesIds);
     }, [userSeries]);
 
+
     return (
         <div>
             <div className="info">
-                {!user.photo && (
+                {loading ? '' : !user.location && (
                     <label htmlFor="fileInput" className="upload-label">
                         <h3 className='addphoto'>Add Photo</h3>
                     </label>
@@ -200,10 +221,15 @@ const Profile = () => {
                     className="hidden-input"
                     onChange={(e) => handlePhotoChange(e)}
                 />
-                {user.photo && (
+                {loading? 
+                    <img 
+                        style={{width: '65px', height: '65px'}}
+                        src={loadingimage}
+                        alt='Loading...'
+                    /> : user.location && (
                     <label htmlFor="fileInput">
                         <img
-                            src={user.photo}
+                            src={user.location}
                             alt="User Photo"
                             className="profile-photo"
                         />
@@ -234,7 +260,12 @@ const Profile = () => {
             <div className="tvseries">
                 <h2 className="titleyour">Your tv series</h2>
                 <div className="yourtvseries">
-                    {userSeries.map((series) => (
+                    {loading1? 
+                    <img 
+                        style={{width: '65px', height: '65px'}}
+                        src={loadingimage}
+                        alt='Loading...'
+                    /> : userSeries.map((series) => (
                         <SeriesPoster
                             key={series.id}
                             series={series}
@@ -249,7 +280,12 @@ const Profile = () => {
                     <>
                         <h2 className="titlelist">Click on your 5 favorite tv series from list below</h2>
                         <div className="listtvseries" ref={listtvseriesRef}>
-                            {seriesList.map((series) => (
+                            {loading2? 
+                            <img 
+                                style={{width: '65px', height: '65px'}}
+                                src={loadingimage}
+                                alt='Loading...'
+                            /> : seriesList.map((series) => (
                             <div
                                 key={series.id}
                                 className={`eachtvseries ${selectedSeries.includes(series.id) ? 'dimmed' : ''}`}
