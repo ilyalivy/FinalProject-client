@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
 import axios from 'axios';
 import UserContext from '../UserContext.js';
-import { Link } from 'react-router-dom';
 import './Profile.css';
 import loadingimage from '../images/loading.gif';
 

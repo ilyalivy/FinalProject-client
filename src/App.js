@@ -17,9 +17,9 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
-  console.log('User FROM APP.JS => ', user)
+  // console.log('User FROM APP.JS => ', user)
 
-  console.log('LocalStorage FROM APP.JS=>', localStorage.getItem('user'))
+  // console.log('LocalStorage FROM APP.JS=>', localStorage.getItem('user'))
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');

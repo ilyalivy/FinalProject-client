@@ -22,10 +22,10 @@ const AuthPage = () => {
     
 
     const handleAuth = async (isLogin) => {
-        // if (!isValidEmail(email)) {
-        //     setError('Invalid email format');
-        //     return;
-        // }
+        if (!isValidEmail(email)) {
+            setError('Invalid email format');
+            return;
+        }
 
         if (!password.trim()) {
             setError('Password is required');

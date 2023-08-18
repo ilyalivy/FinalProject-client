@@ -18,7 +18,7 @@ const UserProfile = () => {
             setLoading(true);
             try {
                 const res = await axios.get(`${BASE_URL}/user/${userId}`);
-                console.log('resdata =>', res.data[0]);
+                // console.log('resdata =>', res.data[0]);
                 setProfileUser({...res.data[0], photo:res.data[0].location});
             } catch (error) {
                 console.log(error);
