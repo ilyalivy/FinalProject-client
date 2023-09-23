@@ -59,47 +59,50 @@ const AuthPage = () => {
                 {error && <p className='error'>{error}</p>}
 
                 {loading ? 
-                    <img 
-                        style={{width: '65px', height: '65px'}}
-                        src={loadingimage}
-                        alt='Loading...'
-                    /> : 
-                <form>
+                    <div className='loading'>
+                        <img 
+                            style={{width: '65px', height: '65px'}}
+                            src={loadingimage}
+                            alt='Loading...'
+                        />
+                        <p>Waiting answer from server...</p>
+                    </div> : 
+                    <form>
 
-                    <div className='datainput'>
-                        <input 
-                        className='email'
-                        type="email" 
-                        placeholder="Email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        />
-                        <input 
-                            className='password'
-                            type="password" 
-                            placeholder="Password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
-                        />
-                    </div>
-                    
-                    <div className='sign'>
-                        <Link className='link'
-                        to="#" 
-                        onClick={() => handleAuth(false)}
-                        >
-                            Sign up
-                        </Link>
-                        <Link className='link'
+                        <div className='datainput'>
+                            <input 
+                            className='email'
+                            type="email" 
+                            placeholder="Email" 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            />
+                            <input 
+                                className='password'
+                                type="password" 
+                                placeholder="Password" 
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)} 
+                            />
+                        </div>
+                        
+                        <div className='sign'>
+                            <Link className='link'
                             to="#" 
-                            onClick={() => handleAuth(true)}
-                        >
-                            Sign in
-                        </Link>
-                    </div>
-                    
-                    
-                </form>
+                            onClick={() => handleAuth(false)}
+                            >
+                                Sign up
+                            </Link>
+                            <Link className='link'
+                                to="#" 
+                                onClick={() => handleAuth(true)}
+                            >
+                                Sign in
+                            </Link>
+                        </div>
+                        
+                        
+                    </form>
                 }
 
             </div>
