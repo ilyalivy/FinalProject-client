@@ -65,7 +65,7 @@ const AuthPage = () => {
                             src={loadingimage}
                             alt='Loading...'
                         />
-                        <p>Waiting answer from server...</p>
+                        <p>Due to demo version the initial connection with server takes some time. Please be patient.</p>
                     </div> : 
                     <form>
 
