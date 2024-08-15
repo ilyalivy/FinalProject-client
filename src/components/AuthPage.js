@@ -51,12 +51,12 @@ const AuthPage = () => {
 
     return (
         <div className={user ? "" : "main"}>
-            <div className='innermain'>
+            <div className='innermain' style={{ height: error || loading ? '420px' : '370px' }}>
                 <h1 className="name">Chandler</h1>
                 <h3 className='mates'>Your tv mates worldwide</h3>
                 <p className='community'>Community app based on matching by your favorite tv series</p>
                 
-                {error && <p className='error'>{error}</p>}
+                {!loading && error && <p className='error'>{error}</p>}
 
                 {loading ? 
                     <div className='loading'>
@@ -65,7 +65,7 @@ const AuthPage = () => {
                             src={loadingimage}
                             alt='Loading...'
                         />
-                        <p>Due to demo version the initial connection with server takes some time. Please be patient.</p>
+                        <p className='pleasewait'>Due to 'Cold Start' of instance on render.com the initial connection takes some time. Please be patient.</p>
                     </div> : 
                     <form>
 
