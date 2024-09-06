@@ -32,7 +32,7 @@ const AuthPage = () => {
             return;
         }
 
-        const url = isLogin ? `${BASE_URL}/login` : `${BASE_URL}/register`;
+        const url = isLogin ? 'https://final-project-server-tau.vercel.app/login' : 'https://final-project-server-tau.vercel.app/register';
         const userData = { email, password };
 
         setLoading(true);
