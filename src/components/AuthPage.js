@@ -38,6 +38,7 @@ const AuthPage = () => {
         setLoading(true);
 
         try {
+            console.log("URL ===>", url)
             const response = await axios.post(url, userData);
             // console.log('auth user=>', response.data);
             setUser({...response.data[0], photo:response.data[0].location});
