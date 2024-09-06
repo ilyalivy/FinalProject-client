@@ -54,11 +54,11 @@
     flex-direction: 'column';
     align-items: 'center';
     justify-content: 'center';
-    padding-top: 15px;
+    padding-top: 20px;
 }
 
-.pleasewait {
-    padding: 10px;
+.loadingtext {
+    padding-top: 15px;
 }
 
 form {
